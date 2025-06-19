@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Agence de Voyage</title>
+        <link rel="stylesheet" href="genstyle.css" />
+    </head>
+
+    <body>
+        <header>
+            <script src="myscripts.js"></script>
+            <img id="header_logo" src="../media/templogo.png" height="100px">
+            <a id="header_title" href="index.html"><b>CocoZone</b></a>
+            <nav id="header_nav">
+                <a class="nav_link" href="histoire.html">Notre histoire</a>
+                <a class="nav_link" href="galerie.html">Galerie</a>
+                <a class="nav_link" href="store.html">Réserver</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="store-content">
+                <div class="tour_card" onclick="loadTour('paris')">
+                    <img src="../media/paris.jpg" alt="Paris" class="tour-image">
+                    <h2 class="tour-title">Paris, France</h2>
+                    <p class="tour-price">à partir de 500€</p>
+                    <a href="#destination" class="details-link">Voir plus</a>
+                </div>
+
+                <div class="tour_card" onclick="loadTour('tokyo')">
+                    <img src="../media/tokyo.webp" alt="Tokyo" class="tour-image">
+                    <h2 class="tour-title">Tokyo, Japon</h2>
+                    <p class="tour-price">à partir de 850€</p>
+                    <a href="#destination" class="details-link">Voir plus</a>
+                </div>
+
+                <div class="tour_card" onclick="loadTour('cairo')">
+                    <img src="../media/caire.jpg" alt="Le Caire" class="tour-image">
+                    <h2 class="tour-title">Le Caire, Égypte</h2>
+                    <p class="tour-price">à partir de 400€</p>                        
+                    <a href="#destination" class="details-link">Voir plus</a>
+                </div>
+            </section>
+            
+            <section id="destination" class="hidden">
+                <div id="destination-content">
+                    <img src="" alt="" class="destination-image" id="destination-img">
+                    <h2 id="destination-title"></h2>
+                    <p class="tour-price" id="destination-price"></p>
+                    <h3 class="section-subtitle">Description</h3>
+                    <p id="destination-desc"></p>
+                    <h4 class="section-subtitle">Inclus</h4>
+                    <ul id="included-list" class="included-list"></ul>
+                    <button id="book-button">Réserver</button>
+                </div>
+            </section>
+        </main>
+
+
+        <script>
+            const tours = {
+                paris: {
+                    title: "Paris, France",
+                    price: "à partir de 500€",
+                    desc: "Paris — capitale de la France et l'une des villes les plus romantiques au monde. Tour Eiffel, Louvre, Montmartre — tout cela vous attend !",
+                    img: "https://source.unsplash.com/800x400/?paris",
+                    included: ["Vol aller-retour", "Hôtel 3*", "Petits déjeuners", "Visites guidées"]
+                },
+                tokyo: {
+                    title: "Tokyo, Japon",
+                    price: "à partir de 850€",
+                    desc: "Tokyo — ville de la technologie, des sushis, des temples et d’une énergie folle !",
+                    img: "https://source.unsplash.com/800x400/?tokyo",
+                    included: ["Vol", "Hôtel 4*", "Pass métro", "Visite des temples"]
+                },
+                cairo: {
+                    title: "Le Caire, Égypte",
+                    price: "à partir de 400€",
+                    desc: "Le Caire — pyramides anciennes, désert, Nil et une culture arabe unique.",
+                    img: "https://source.unsplash.com/800x400/?egypt",
+                    included: ["Billet d'avion", "3 nuits d'hôtel", "Repas", "Visite des pyramides"]
+                }
+            };
+
+            function loadTour(key) {
+                const tour = tours[key];
+                document.getElementById('destination-title').textContent = tour.title;
+                document.getElementById('destination-price').textContent = tour.price;
+                document.getElementById('destination-desc').textContent = tour.desc;
+                document.getElementById('destination-img').src = tour.img;
+                document.getElementById('included-list').innerHTML = tour.included.map(item => `<li>${item}</li>`).join('');
+                location.hash = "#destination";
+            }
+        </script>
+        
+        <footer>
+            <p id="footer_text">Ce site a été fait dans le cadre du stage de 2nde chez {Epitech}, 2025</p>
+        </footer>
+    </body>
+</html>
